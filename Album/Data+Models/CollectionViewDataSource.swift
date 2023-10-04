@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AlbumCollectionViewDataSource<CELL: UICollectionViewCell, T>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class CollectionViewDataSource<CELL: UICollectionViewCell, T>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private var cellIdentifier: String!
     private var items: [T]!
@@ -28,7 +28,7 @@ class AlbumCollectionViewDataSource<CELL: UICollectionViewCell, T>: NSObject, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionViewCell", for: indexPath) as! CELL
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CELL
         let item = self.items[indexPath.row]
         self.configureCell(cell, item)
         return cell

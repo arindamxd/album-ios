@@ -10,38 +10,56 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private var viewModel: HomeViewModel!
-    private var dataSource: AlbumCollectionViewDataSource<AlbumCollectionViewCell, Album>!
+    private var albumDataSource: CollectionViewDataSource<AlbumCollectionViewCell, Album>!
+    private var albumContentDataSource: CollectionViewDataSource<AlbumContentCollectionViewCell, AlbumContent>!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var albumCollectionView: UICollectionView!
+    @IBOutlet weak var albumContentCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initViewModel()
+        observeViewModel()
     }
     
-    func initViewModel() {
+    func observeViewModel() {
         self.viewModel = HomeViewModel()
-        self.viewModel.bindHomeViewModelToController = {
-            self.updateDataSource()
+        self.viewModel.observeAlbums = { self.updateAlbumDataSource() }
+        self.viewModel.observeAlbumContent = { self.updateAlbumContentDataSource() }
+    }
+    
+    func updateAlbumDataSource() {
+        self.albumDataSource = CollectionViewDataSource(
+            cellIdentifier: "AlbumCollectionViewCell",
+            items: self.viewModel.albums,
+            configureCell: { (cell, model) in
+                cell.album = model
+            }, selected: { index in
+                self.viewModel.currentAlbumId = self.viewModel.albums[index].id
+            }
+        )
+        
+        DispatchQueue.main.async {
+            self.albumCollectionView.delegate = self.albumDataSource
+            self.albumCollectionView.dataSource = self.albumDataSource
+            self.albumCollectionView.reloadData()
         }
     }
     
-    func updateDataSource() {
-        self.dataSource = AlbumCollectionViewDataSource(
-            cellIdentifier: "AlbumCollectionViewCell",
-            items: self.viewModel.albums,
-            configureCell: { (cell, evm) in
-                cell.album = evm
+    func updateAlbumContentDataSource() {
+        self.albumContentDataSource = CollectionViewDataSource(
+            cellIdentifier: "AlbumContentCollectionViewCell",
+            items: self.viewModel.albumContent,
+            configureCell: { (cell, model) in
+                cell.albumContent = model
             }, selected: { index in
                 print("selected : \(index)")
             }
         )
         
         DispatchQueue.main.async {
-            self.collectionView.delegate = self.dataSource
-            self.collectionView.dataSource = self.dataSource
-            self.collectionView.reloadData()
+            self.albumContentCollectionView.delegate = self.albumContentDataSource
+            self.albumContentCollectionView.dataSource = self.albumContentDataSource
+            self.albumContentCollectionView.reloadData()
         }
     }
 }

@@ -14,10 +14,11 @@
 		11165CCC2ACD38160095BFA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11165CCB2ACD38160095BFA2 /* Assets.xcassets */; };
 		11165CCF2ACD38160095BFA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11165CCD2ACD38160095BFA2 /* LaunchScreen.storyboard */; };
 		11165CDD2ACD39B00095BFA2 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CDC2ACD39B00095BFA2 /* APIService.swift */; };
-		11165CE02ACD3A470095BFA2 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CDF2ACD3A470095BFA2 /* Album.swift */; };
+		11165CE02ACD3A470095BFA2 /* AlbumModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CDF2ACD3A470095BFA2 /* AlbumModels.swift */; };
 		11165CE22ACD3AE50095BFA2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CE12ACD3AE50095BFA2 /* HomeViewModel.swift */; };
-		11165CE52ACD4E5B0095BFA2 /* AlbumCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CE42ACD4E5B0095BFA2 /* AlbumCollectionViewDataSource.swift */; };
+		11165CE52ACD4E5B0095BFA2 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CE42ACD4E5B0095BFA2 /* CollectionViewDataSource.swift */; };
 		11165CE72ACD506A0095BFA2 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CE62ACD506A0095BFA2 /* AlbumCollectionViewCell.swift */; };
+		11165CE92ACDEE460095BFA2 /* AlbumContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11165CE82ACDEE460095BFA2 /* AlbumContentCollectionViewCell.swift */; };
 		4A661D8C1C16A9E888FA4D33 /* Pods_Album.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6B2C2386A8BD3330F62DA6 /* Pods_Album.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +32,11 @@
 		11165CCE2ACD38160095BFA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11165CD02ACD38160095BFA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11165CDC2ACD39B00095BFA2 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		11165CDF2ACD3A470095BFA2 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		11165CDF2ACD3A470095BFA2 /* AlbumModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModels.swift; sourceTree = "<group>"; };
 		11165CE12ACD3AE50095BFA2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		11165CE42ACD4E5B0095BFA2 /* AlbumCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		11165CE42ACD4E5B0095BFA2 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		11165CE62ACD506A0095BFA2 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		11165CE82ACDEE460095BFA2 /* AlbumContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		56EF187196683F3FC04A51F7 /* Pods-Album.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Album.release.xcconfig"; path = "Target Support Files/Pods-Album/Pods-Album.release.xcconfig"; sourceTree = "<group>"; };
 		AD90DEDC59A0B349861BE708 /* Pods-Album.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Album.debug.xcconfig"; path = "Target Support Files/Pods-Album/Pods-Album.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6B2C2386A8BD3330F62DA6 /* Pods_Album.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Album.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +77,7 @@
 			children = (
 				11165CD72ACD38D30095BFA2 /* Common */,
 				11165CD62ACD38AE0095BFA2 /* WebService */,
-				11165CDB2ACD39780095BFA2 /* Models */,
+				11165CDB2ACD39780095BFA2 /* Data+Models */,
 				11165CDE2ACD39C00095BFA2 /* ViewModels */,
 				11165CDA2ACD393E0095BFA2 /* Controllers */,
 				11165CC82ACD38150095BFA2 /* Main.storyboard */,
@@ -111,14 +113,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		11165CDB2ACD39780095BFA2 /* Models */ = {
+		11165CDB2ACD39780095BFA2 /* Data+Models */ = {
 			isa = PBXGroup;
 			children = (
-				11165CDF2ACD3A470095BFA2 /* Album.swift */,
-				11165CE42ACD4E5B0095BFA2 /* AlbumCollectionViewDataSource.swift */,
+				11165CDF2ACD3A470095BFA2 /* AlbumModels.swift */,
+				11165CE42ACD4E5B0095BFA2 /* CollectionViewDataSource.swift */,
 				11165CE62ACD506A0095BFA2 /* AlbumCollectionViewCell.swift */,
+				11165CE82ACDEE460095BFA2 /* AlbumContentCollectionViewCell.swift */,
 			);
-			path = Models;
+			path = "Data+Models";
 			sourceTree = "<group>";
 		};
 		11165CDE2ACD39C00095BFA2 /* ViewModels */ = {
@@ -266,9 +269,10 @@
 				11165CE22ACD3AE50095BFA2 /* HomeViewModel.swift in Sources */,
 				11165CC32ACD38150095BFA2 /* AppDelegate.swift in Sources */,
 				11165CDD2ACD39B00095BFA2 /* APIService.swift in Sources */,
+				11165CE92ACDEE460095BFA2 /* AlbumContentCollectionViewCell.swift in Sources */,
 				11165CC52ACD38150095BFA2 /* SceneDelegate.swift in Sources */,
-				11165CE02ACD3A470095BFA2 /* Album.swift in Sources */,
-				11165CE52ACD4E5B0095BFA2 /* AlbumCollectionViewDataSource.swift in Sources */,
+				11165CE02ACD3A470095BFA2 /* AlbumModels.swift in Sources */,
+				11165CE52ACD4E5B0095BFA2 /* CollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

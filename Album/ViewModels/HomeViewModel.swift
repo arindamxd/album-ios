@@ -10,26 +10,38 @@ import Foundation
 class HomeViewModel: NSObject {
     
     private var apiService: APIService!
-    private var currentAlbumId: String!
     
-    private(set) var albums : [Album]! {
+    private (set) var albums : [Album]! {
         didSet {
-            self.bindHomeViewModelToController()
+            self.observeAlbums()
         }
     }
     
-    var bindHomeViewModelToController : (() -> ()) = {}
+    private (set) var albumContent : [AlbumContent]! {
+        didSet {
+            self.observeAlbumContent()
+        }
+    }
+    
+    var currentAlbumId: Int! {
+        didSet {
+            self.getAlbumData(albumId: currentAlbumId)
+        }
+    }
+    
+    var observeAlbums: (() -> ()) = {}
+    var observeAlbumContent: (() -> ()) = {}
     
     override init() {
         super.init()
         
         self.apiService = APIService()
-        self.currentAlbumId = "-1"
+        self.currentAlbumId = -1
         
         getAlbums()
     }
     
-    func getAlbums() {
+    private func getAlbums() {
         self.apiService.getAlbums(success: { data in
             self.albums = data
         }, failure: { error in
@@ -37,9 +49,12 @@ class HomeViewModel: NSObject {
         })
     }
     
-    func getAlbumData() {
-        self.apiService.getAlbumData(albumId: self.currentAlbumId, success: { data in
-            print(data)
+    private func getAlbumData(albumId: Int) {
+        self.apiService.getAlbumContent(albumId: albumId, success: { data in
+            if self.albumContent != nil {
+                self.albumContent.removeAll()
+            }
+            self.albumContent = data
         }, failure: { error in
             print(error)
         })

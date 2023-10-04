@@ -14,7 +14,7 @@ struct Album: Codable {
     let title: String
 }
 
-struct AlbumData: Codable {
+struct AlbumContent: Codable {
     let albumId: Int
     let id: Int
     let title: String
