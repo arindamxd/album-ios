@@ -9,6 +9,7 @@ def pods
 
   # Pods for Album
   pod 'Alamofire', '5.4.1'
+  pod 'SDWebImage', '5.12'
 end
 
 target 'Album' do

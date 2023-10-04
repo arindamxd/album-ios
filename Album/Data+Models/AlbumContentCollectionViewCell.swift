@@ -6,15 +6,17 @@
 //
 
 import Foundation
-import UIKit
+import SDWebImage
 
 class AlbumContentCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var id: UILabel!
+    @IBOutlet var thumbnail: UIImageView!
     
     var albumContent: AlbumContent? {
         didSet {
-            self.id?.text = "\(albumContent?.id ?? 0)"
+            if let url = URL(string: albumContent?.thumbnailUrl ?? "") {
+                self.thumbnail.sd_setImage(with: url)
+            }
         }
     }
 }

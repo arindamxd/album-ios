@@ -93,27 +93,17 @@
                                                         <constraint firstAttribute="width" constant="100" id="Y2h-UJ-hGA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-dV-uRz" userLabel="ID">
-                                                    <rect key="frame" x="5" y="5" width="90" height="90"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7Zz-dV-uRz" secondAttribute="bottom" constant="5" id="8l5-kd-bSJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="7Zz-dV-uRz" secondAttribute="trailing" constant="5" id="AyP-XB-SK3"/>
-                                                <constraint firstItem="7Zz-dV-uRz" firstAttribute="top" secondItem="Rvm-Ko-INl" secondAttribute="top" constant="5" id="BOE-sA-emh"/>
                                                 <constraint firstAttribute="bottom" secondItem="n5X-p0-9OY" secondAttribute="bottom" id="DFb-pS-xCm"/>
-                                                <constraint firstItem="7Zz-dV-uRz" firstAttribute="leading" secondItem="Rvm-Ko-INl" secondAttribute="leading" constant="5" id="Gwj-Ea-rXf"/>
                                                 <constraint firstItem="n5X-p0-9OY" firstAttribute="leading" secondItem="Rvm-Ko-INl" secondAttribute="leading" id="Mig-3V-5Jh"/>
                                                 <constraint firstItem="n5X-p0-9OY" firstAttribute="top" secondItem="Rvm-Ko-INl" secondAttribute="top" id="ajE-tj-jXN"/>
                                                 <constraint firstAttribute="trailing" secondItem="n5X-p0-9OY" secondAttribute="trailing" id="v9L-CR-Bih"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <connections>
-                                            <outlet property="id" destination="7Zz-dV-uRz" id="Bgg-8J-Bhd"/>
+                                            <outlet property="thumbnail" destination="n5X-p0-9OY" id="f5m-Lr-MoA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -145,11 +135,11 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
