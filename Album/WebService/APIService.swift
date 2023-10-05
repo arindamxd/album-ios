@@ -49,9 +49,8 @@ class APIService: NSObject {
             }
             
             if let data = response.data {
-                let jsonDecoder = JSONDecoder()
                 do {
-                    let albumsData = try jsonDecoder.decode([AlbumContent].self, from: data)
+                    let albumsData = try JSONDecoder().decode([AlbumContent].self, from: data)
                     success(albumsData)
                 } catch {
                     failure(error.localizedDescription)
