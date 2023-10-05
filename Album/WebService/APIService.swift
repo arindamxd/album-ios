@@ -17,22 +17,21 @@ class APIService: NSObject {
         success: @escaping ([Album]) -> Void,
         failure: @escaping (String) -> Void
     ) {
-        URLSession.shared.dataTask(with: URL(string: albumsURL)!) { (data, urlResponse, error) in
-            if let error = error {
+        AF.request(albumsURL).response { response in
+            if let error = response.error {
                 failure(error.localizedDescription)
                 return
             }
             
-            if let data = data {
-                let jsonDecoder = JSONDecoder()
+            if let data = response.data {
                 do {
-                    let albumsData = try jsonDecoder.decode([Album].self, from: data)
+                    let albumsData = try JSONDecoder().decode([Album].self, from: data)
                     success(albumsData)
                 } catch {
                     failure(error.localizedDescription)
                 }
             }
-        }.resume()
+        }
     }
     
     func getAlbumContent(
@@ -43,13 +42,13 @@ class APIService: NSObject {
         var url = URL(string: albumContentURL)!
         url.append(queryItems: [URLQueryItem(name: "albumId", value: "\(albumId)")])
         
-        URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
-            if let error = error {
+        AF.request(url).response { response in
+            if let error = response.error {
                 failure(error.localizedDescription)
                 return
             }
             
-            if let data = data {
+            if let data = response.data {
                 let jsonDecoder = JSONDecoder()
                 do {
                     let albumsData = try jsonDecoder.decode([AlbumContent].self, from: data)
@@ -58,6 +57,6 @@ class APIService: NSObject {
                     failure(error.localizedDescription)
                 }
             }
-        }.resume()
+        }
     }
 }
