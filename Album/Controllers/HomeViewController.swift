@@ -21,13 +21,13 @@ class HomeViewController: UIViewController {
         observeViewModel()
     }
     
-    func observeViewModel() {
+    private func observeViewModel() {
         self.viewModel = HomeViewModel()
         self.viewModel.observeAlbums = { self.updateAlbumDataSource() }
         self.viewModel.observeAlbumContent = { self.updateAlbumContentDataSource() }
     }
     
-    func updateAlbumDataSource() {
+    private func updateAlbumDataSource() {
         self.albumDataSource = CollectionViewDataSource(
             cellIdentifier: "AlbumCollectionViewCell",
             items: self.viewModel.albums,
@@ -45,14 +45,15 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func updateAlbumContentDataSource() {
+    private func updateAlbumContentDataSource() {
         self.albumContentDataSource = CollectionViewDataSource(
             cellIdentifier: "AlbumContentCollectionViewCell",
             items: self.viewModel.albumContent,
             configureCell: { (cell, model) in
                 cell.albumContent = model
             }, selected: { index in
-                print("selected : \(index)")
+                let data = self.viewModel.albumContent[index]
+                self.showAlbumContentInfoPage(imageUrl: data.url, description: data.title)
             }
         )
         
@@ -61,5 +62,12 @@ class HomeViewController: UIViewController {
             self.albumContentCollectionView.dataSource = self.albumContentDataSource
             self.albumContentCollectionView.reloadData()
         }
+    }
+    
+    private func showAlbumContentInfoPage(imageUrl: String, description: String) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
+        vc._imageUrl = imageUrl
+        vc._description = description
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
