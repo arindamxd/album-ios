@@ -51,9 +51,6 @@ class HomeViewModel: NSObject {
     
     private func getAlbumData(albumId: Int) {
         self.apiService.getAlbumContent(albumId: albumId, success: { data in
-            if self.albumContent != nil {
-                self.albumContent.removeAll()
-            }
             self.albumContent = data
         }, failure: { error in
             print(error)
